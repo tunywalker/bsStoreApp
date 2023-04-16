@@ -13,10 +13,10 @@ namespace Entities.DataTransferObjects
             Id = ıd;
             Title = title;
             Price = price;
-        }
+        } 
 
         public int Id { get; init; }
         public String Title { get; init; }
-        public decimal Price { get; init; }
+        public decimal Price { get; init; } 
     }
 }
