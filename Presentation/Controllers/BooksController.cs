@@ -12,100 +12,104 @@ using System.Threading.Tasks;
 
 namespace Presentation.Controllers
 {
-    [ApiController]
-    [Route("api/books")]
-    public class BooksController : ControllerBase
-    {
-        private readonly IServiceManager _manager;
-        public BooksController(IServiceManager manager)
-        {
-            _manager = manager;
-        }
+	[ApiController]
+	[Route("api/books")]
+	public class BooksController : ControllerBase
+	{
+		private readonly IServiceManager _manager;
+		public BooksController(IServiceManager manager)
+		{
+			_manager = manager;
+		}
 
-        [HttpGet]
-        public IActionResult GetAllBooks()
-        {
-          
-                var books = _manager.BookService.GetAllBooks(false);
-                return Ok(books);
-            
-               
-            
-        }
+		[HttpGet]
+		public IActionResult GetAllBooks()
+		{
 
-        [HttpGet("{id:int}")]
-        public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
-        {
-         
-               
-                var book = _manager
-                .BookService
-                .GetOneBookById(id, false);
-
-                return Ok(book);
-           
-
-        }
-
-        [HttpPost]
-        public IActionResult CreateOneBook([FromBody] BookDtoForInsertion book)
-        {
-            
-                if (book is null)
-                    return BadRequest(); // 400 
-
-                _manager.BookService.CreateOneBook(book);
-
-                return StatusCode(201, book); //CreatedAtRoute()
-          
-        }
-
-        [HttpPut("{id:int}")]
-        public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id,
-            [FromBody] BookDtoForUpdate bookDto)
-        {
-          
-                if (bookDto is null)
-                    return BadRequest(); // 400 
-
-                _manager.BookService.UpdateOneBook(id, bookDto, true);
-                return NoContent(); // 204
-           
-        }
-
-        [HttpDelete("{id:int}")]
-        public IActionResult DeleteOneBook([FromRoute(Name = "id")] int id)
-        {
-         
-                _manager.BookService.DeleteOneBook(id, false);
-                return NoContent();
-            
-           
-        }
+			var books = _manager.BookService.GetAllBooks(false);
+			return Ok(books);
 
 
-        [HttpPatch("{id:int}")]
-        public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int id,
-            [FromBody] JsonPatchDocument<BookDto> bookPatch)
-        {
-           
-                // check entity
-                var bookDto = _manager
-                    .BookService
-                    .GetOneBookById(id, true);              
 
-                bookPatch.ApplyTo(bookDto);
-                _manager.BookService.UpdateOneBook(id, 
-                    new BookDtoForUpdate()
-                    {
-                        Id=bookDto.Id,
-                        Price=bookDto.Price,
-                        Title=bookDto.Title,
-                    }, 
-                    true);
+		}
 
-                return NoContent(); // 204
-           
-        }
-    }
+		[HttpGet("{id:int}")]
+		public IActionResult GetOneBook([FromRoute(Name = "id")] int id)
+		{
+
+
+			var book = _manager
+			.BookService
+			.GetOneBookById(id, false);
+
+			return Ok(book);
+
+
+		}
+
+		[HttpPost]
+		public IActionResult CreateOneBook([FromBody] BookDtoForInsertion book)
+		{
+
+			if (book is null)
+				return BadRequest(); // 400 
+			if (!ModelState.IsValid)
+			{
+				return UnprocessableEntity(ModelState);
+			}
+			_manager.BookService.CreateOneBook(book);
+
+			return StatusCode(201, book); //CreatedAtRoute()
+
+		}
+
+		[HttpPut("{id:int}")]
+		public IActionResult UpdateOneBook([FromRoute(Name = "id")] int id,
+			[FromBody] BookDtoForUpdate bookDto)
+		{
+			if (bookDto is null)
+				return BadRequest(); // 400 
+
+			if (!ModelState.IsValid)
+				return UnprocessableEntity(ModelState);
+
+			_manager.BookService.UpdateOneBook(id, bookDto, false);
+			return NoContent(); // 204
+		}
+
+		[HttpDelete("{id:int}")]
+		public IActionResult DeleteOneBook([FromRoute(Name = "id")] int id)
+		{
+
+			_manager.BookService.DeleteOneBook(id, false);
+			return NoContent();
+
+
+		}
+
+
+		[HttpPatch("{id:int}")]
+		public IActionResult PartiallyUpdateOneBook([FromRoute(Name = "id")] int Id,
+			[FromBody] JsonPatchDocument<BookDto> bookPatch)
+		{
+
+			// check entity
+			var bookDto = _manager
+				.BookService
+				.GetOneBookById(Id, true);
+
+			bookPatch.ApplyTo(bookDto);
+			_manager.BookService.UpdateOneBook(Id,
+				new BookDtoForUpdate()
+				{
+					Id = bookDto.Id,
+					Price = bookDto.Price,
+					Title = bookDto.Title,
+				},
+				true);
+
+			return NoContent(); // 204
+
+		}
+	}
 }

@@ -10,7 +10,7 @@ namespace Entities.DataTransferObjects
     public record BookDtoForUpdate:BookDtoForManupilation
     {
         [Required]
-        public int Id { get; set; }
-
-    }
+		
+		public int Id { get; set; }
+	}
 }
