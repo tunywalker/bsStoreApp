@@ -105,3 +105,21 @@
 2024-06-03 03:25:35.0665 Info Message Template Auto Format enabled
 2024-06-03 03:25:35.1115 Info Registered target NLog.Targets.FileTarget(Name=logfile)
 2024-06-03 03:25:35.1292 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\T\source\repos\bsStoreApp\WebApi\nlog.config
+2024-06-12 15:29:06.5351 Info Message Template Auto Format enabled
+2024-06-12 15:29:06.6497 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-06-12 15:29:06.6793 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\T\source\repos\bsStoreApp\WebApi\nlog.config
+2024-06-20 01:18:10.2589 Info Message Template Auto Format enabled
+2024-06-20 01:18:10.4176 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-06-20 01:18:10.4451 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\T\source\repos\bsStoreApp\WebApi\nlog.config
+2024-06-20 01:20:57.2580 Info Message Template Auto Format enabled
+2024-06-20 01:20:57.4058 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-06-20 01:20:57.4526 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\T\source\repos\bsStoreApp\WebApi\nlog.config
+2024-06-20 01:22:49.7086 Info Message Template Auto Format enabled
+2024-06-20 01:22:49.9058 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-06-20 01:22:49.9415 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\T\source\repos\bsStoreApp\WebApi\nlog.config
+2024-06-20 22:55:52.9400 Info Message Template Auto Format enabled
+2024-06-20 22:55:53.0796 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-06-20 22:55:53.1202 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\T\source\repos\bsStoreApp\WebApi\nlog.config
+2024-06-26 01:20:57.5227 Info Message Template Auto Format enabled
+2024-06-26 01:20:57.6523 Info Registered target NLog.Targets.FileTarget(Name=logfile)
+2024-06-26 01:20:57.6799 Info Validating config: TargetNames=logfile, ConfigItems=12, FilePath=C:\Users\T\source\repos\bsStoreApp\WebApi\nlog.config

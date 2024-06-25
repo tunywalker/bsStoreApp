@@ -4,6 +4,7 @@ using WebApi.Extensions;
 using NLog;
 using Services.Contracts;
 using Microsoft.AspNetCore.Mvc;
+using Presentation.ActionFilters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,7 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureLoggerService();
 builder.Services.AddAutoMapper(typeof(Program));
-
+builder.Services.ConfigureActionFilters(); 
 
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerService>();
