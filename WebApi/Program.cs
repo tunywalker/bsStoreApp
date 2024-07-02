@@ -30,8 +30,8 @@ builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
 builder.Services.ConfigureLoggerService();
 builder.Services.AddAutoMapper(typeof(Program));
-builder.Services.ConfigureActionFilters(); 
-
+builder.Services.ConfigureActionFilters();
+builder.Services.ConfigureCors();
 var app = builder.Build();
 var logger = app.Services.GetRequiredService<ILoggerService>();
 app.ConfigureExceptionHander(logger);
@@ -47,6 +47,8 @@ if (app.Environment.IsProduction())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("CorsPolicy");
 
 app.UseAuthorization();
 
